@@ -8,7 +8,7 @@ API REST completa con autenticación JWT y frontend Angular, construida desde ce
 [![Java](https://img.shields.io/badge/Java_21-orange?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot_4-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/)
 [![Angular](https://img.shields.io/badge/Angular_17+-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![MySQL](https://img.shields.io/badge/MySQL_8-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
 
 </div>
 
@@ -24,7 +24,7 @@ Este repositorio es la plataforma digital que gestiona los pedidos: catálogo p�
 |-----|------|
 | **Backend** | Spring Boot 4 · Spring Security 7 · JWT (JJWT 0.12) |
 | **Frontend** | Angular 17+ (standalone components, signals) |
-| **Persistencia** | Spring Data JPA · Hibernate · PostgreSQL |
+| **Persistencia** | Spring Data JPA · Hibernate · MySQL 8 |
 | **Migraciones** | Flyway — schema versionado |
 | **Arquitectura** | REST API desacoplada · CORS configurado · JWT stateless |
 
@@ -97,7 +97,7 @@ Spring Boot (:8080)
     │
     │  JPA / Hibernate
     ▼
-PostgreSQL (:5432)
+MySQL (:3306)
 ```
 
 ```
@@ -179,7 +179,7 @@ orders ──< order_item ──► product
 
 ## Instalación local
 
-**Requisitos:** Java 21+, PostgreSQL, Node.js 20+, Angular CLI
+**Requisitos:** Java 21+, MySQL 8, Node.js 20+, Angular CLI
 
 ```bash
 # 1. Clonar el repositorio
@@ -187,7 +187,7 @@ git clone https://github.com/Albertocaen/DeCasa.git
 cd DeCasa
 
 # 2. Crear la base de datos
-psql -U postgres -c "CREATE DATABASE decasa;"
+mysql -u root -p -e "CREATE DATABASE decasa;"
 
 # 3. Arrancar el backend (Hibernate crea el schema automáticamente en dev)
 mvnw.cmd spring-boot:run          # Windows
@@ -204,7 +204,7 @@ ng serve
 **Credenciales de desarrollo** (definidas en `application.properties`):
 ```
 Admin:     admin@decasa.be / admin123
-PostgreSQL: postgres / postgres
+MySQL:     root / (tu contraseña local)
 ```
 
 ---
