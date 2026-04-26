@@ -1,0 +1,81 @@
+### =============================================
+### DE CASA — .gitignore
+### =============================================
+
+# -----------------------------------------------
+# Archivos personales / privados
+# -----------------------------------------------
+.claude/
+decasa v3.docx
+HELP.md
+DEV_GUIDE.md
+decasa_content.txt
+
+
+# -----------------------------------------------
+# Credenciales — nunca subir a un repo público
+# Si extraes las credenciales a un archivo separado, ignóralo aquí:
+# -----------------------------------------------
+application-local.properties
+application-secrets.properties
+.env
+.env.*
+*.env
+secrets.properties
+
+# -----------------------------------------------
+# Maven
+# -----------------------------------------------
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# -----------------------------------------------
+# Angular / Node
+# -----------------------------------------------
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.sass-cache/
+frontend/npm-debug.log*
+frontend/yarn-error.log*
+
+# -----------------------------------------------
+# IDEs
+# -----------------------------------------------
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+
+# Eclipse / STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# -----------------------------------------------
+# Sistema operativo
+# -----------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini

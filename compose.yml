@@ -1,0 +1,26 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: decasa-mysql
+    environment:
+      MYSQL_DATABASE: decasa
+      MYSQL_USER: decasa
+      MYSQL_PASSWORD: decasa
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      # Scripts de inicialización: MySQL los ejecuta automáticamente la primera vez
+      # que arranca con un volumen vacío. Orden: 01_ antes que 02_
+      - ./docker/init:/docker-entrypoint-initdb.d
+      # Datos persistentes — sobreviven al reinicio del contenedor
+      - decasa_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "decasa", "-pdecasa"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+volumes:
+  decasa_mysql_data:

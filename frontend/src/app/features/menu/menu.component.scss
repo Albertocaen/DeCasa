@@ -1,0 +1,478 @@
+/* ============================================================
+   MENU COMPONENT — Estética restaurante español
+   ============================================================ */
+
+/* ── HEADER / NAV ─────────────────────────────────────────── */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(26, 26, 24, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  flex: 1;
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #fff;
+  letter-spacing: 0.02em;
+  flex: 1;
+  text-align: center;
+}
+
+.nav-cta {
+  flex: 1;
+  text-align: right;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  transition: color 0.2s;
+
+  &:hover { color: #fff; }
+}
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--negro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+
+  /* Textura sutil */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, #2C1E16 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.hero-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--terracota);
+  margin: 0 auto 1.5rem;
+}
+
+.hero-note {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.25);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── ESTADOS (loading / error / empty) ────────────────────── */
+.state-msg {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--gris);
+
+  &--error { color: var(--terracota); }
+}
+
+/* ── CONTENEDOR PRINCIPAL ─────────────────────────────────── */
+.menu-main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── CABECERAS DE SECCIÓN ─────────────────────────────────── */
+.section-header {
+  text-align: center;
+  padding: 5rem 2rem 3rem;
+
+  &--light .section-label { color: rgba(255,255,255,0.4); }
+  &--light .section-title { color: #fff; }
+}
+
+.section-label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--negro);
+}
+
+/* ── ESPECIALES ───────────────────────────────────────────── */
+.specials-section {
+  background: var(--crema);
+}
+
+.specials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1px;
+  background: var(--crema-d);
+  border-top: 1px solid var(--crema-d);
+}
+
+.special-card {
+  background: var(--crema);
+  padding: 2.5rem 3rem;
+  transition: background 0.2s;
+
+  &:hover { background: #fff; }
+}
+
+.special-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  border: 1px solid var(--terracota);
+  padding: 0.2rem 0.65rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.special-name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.special-desc {
+  font-size: 0.88rem;
+  color: var(--gris);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.special-price {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--terracota);
+
+  span {
+    font-weight: 300;
+    font-size: 0.82rem;
+    color: var(--gris);
+    margin-left: 0.25rem;
+  }
+}
+
+/* ── CATEGORÍAS ───────────────────────────────────────────── */
+.category-section {
+  padding: 0 2rem 5rem;
+
+  & + & { padding-top: 0; }
+}
+
+.category-header {
+  padding: 4rem 0 2rem;
+  border-bottom: 1px solid var(--borde);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borde);
+  }
+}
+
+.category-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  white-space: nowrap;
+  color: var(--negro);
+}
+
+/* ── PRODUCTOS ────────────────────────────────────────────── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.25s;
+  cursor: default;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(26, 26, 24, 0.08);
+    transform: translateY(-3px);
+  }
+}
+
+.product-img-wrap {
+  overflow: hidden;
+  height: 200px;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+
+  .product-card:hover & { transform: scale(1.04); }
+}
+
+.product-body {
+  padding: 1.5rem;
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.product-desc {
+  font-size: 0.82rem;
+  color: var(--gris);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.product-footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--borde);
+}
+
+.product-price {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--terracota);
+}
+
+.product-min {
+  font-size: 0.72rem;
+  color: var(--gris);
+  letter-spacing: 0.04em;
+}
+
+/* ── PACKS ────────────────────────────────────────────────── */
+.packs-section {
+  background: var(--negro);
+  padding-bottom: 5rem;
+}
+
+.packs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pack-card {
+  background: var(--negro);
+  padding: 2.5rem 2rem;
+  transition: background 0.2s;
+
+  &:hover { background: var(--negro-m); }
+}
+
+.pack-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.pack-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #fff;
+}
+
+.pack-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--terracota);
+  white-space: nowrap;
+}
+
+.pack-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.pack-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+}
+
+.pack-qty {
+  font-weight: 600;
+  color: var(--terracota);
+  font-size: 0.78rem;
+  min-width: 1.5rem;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+.site-footer {
+  background: #111110;
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+}
+
+.footer-info {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.35);
+
+  a:hover { color: var(--terracota); }
+}
+
+.footer-copy {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.05em;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-tagline { display: none; }
+  .nav-cta     { font-size: 0.7rem; }
+
+  .category-section { padding-left: 1rem; padding-right: 1rem; }
+  .packs-grid        { padding-left: 1rem; padding-right: 1rem; }
+  .special-card      { padding: 2rem 1.5rem; }
+}

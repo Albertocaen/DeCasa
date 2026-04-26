@@ -1,0 +1,169 @@
+<!-- ============================================================
+     HEADER / NAV
+     ============================================================ -->
+<header class="site-header">
+  <nav class="nav">
+    <span class="nav-tagline">Cocina española · Bruselas</span>
+    <a class="nav-logo" href="/">De Casa</a>
+    <a class="nav-cta" href="mailto:hola@decasa.be">Hacer un encargo</a>
+  </nav>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-label">Catering artesanal</p>
+    <h1 class="hero-title">De Casa</h1>
+    <p class="hero-sub">Tapas, tortillas y cocina española<br>para tus eventos en Bruselas</p>
+    <div class="hero-divider"></div>
+    <p class="hero-note">Pedidos con 48 h de antelación · Entrega a domicilio o recogida</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Nuestro menú</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============================================================
+     ESTADOS: cargando / error / vacío
+     ============================================================ -->
+@if (loading()) {
+  <div class="state-msg">
+    <p>Cargando el menú…</p>
+  </div>
+} @else if (hasError()) {
+  <div class="state-msg state-msg--error">
+    <p>No se pudo cargar el menú.<br>Comprueba tu conexión e inténtalo de nuevo.</p>
+  </div>
+} @else if (isEmpty()) {
+  <div class="state-msg">
+    <p>El menú aún no está disponible.<br>Vuelve pronto.</p>
+  </div>
+} @else {
+
+  <main class="menu-main">
+
+    <!-- ========================================================
+         ESPECIALES DE LA SEMANA
+         ======================================================== -->
+    @if (weeklySpecials().length > 0) {
+      <section class="specials-section">
+        <div class="section-header">
+          <span class="section-label">Selección semanal</span>
+          <h2 class="section-title">Esta semana</h2>
+        </div>
+
+        <div class="specials-grid">
+          @if (getWeeklyTapa(weeklySpecials()); as tapa) {
+            <article class="special-card">
+              <span class="special-badge">Tapa de la semana</span>
+              <h3 class="special-name">{{ tapa.product.name }}</h3>
+              @if (tapa.product.description) {
+                <p class="special-desc">{{ tapa.product.description }}</p>
+              }
+              <p class="special-price">
+                {{ formatPrice(tapa.product.basePrice) }} / ud
+                <span>· mín. {{ tapa.product.minimumUnits }} uds</span>
+              </p>
+            </article>
+          }
+          @if (getWeeklyMini(weeklySpecials()); as mini) {
+            <article class="special-card">
+              <span class="special-badge">Mini de la semana</span>
+              <h3 class="special-name">{{ mini.product.name }}</h3>
+              @if (mini.product.description) {
+                <p class="special-desc">{{ mini.product.description }}</p>
+              }
+              <p class="special-price">
+                {{ formatPrice(mini.product.basePrice) }} / ud
+                <span>· mín. {{ mini.product.minimumUnits }} uds</span>
+              </p>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- ========================================================
+         MENÚ POR CATEGORÍAS
+         ======================================================== -->
+    @for (category of categories(); track category.name) {
+      <section class="category-section">
+        <div class="category-header">
+          <h2 class="category-title">{{ category.name }}</h2>
+        </div>
+
+        <div class="products-grid">
+          @for (product of category.products; track product.id) {
+            <article class="product-card">
+              @if (product.imageUrl) {
+                <div class="product-img-wrap">
+                  <img [src]="product.imageUrl" [alt]="product.name" class="product-img" />
+                </div>
+              }
+              <div class="product-body">
+                <h3 class="product-name">{{ product.name }}</h3>
+                @if (product.description) {
+                  <p class="product-desc">{{ product.description }}</p>
+                }
+                <div class="product-footer">
+                  <span class="product-price">{{ formatPrice(product.basePrice) }}</span>
+                  @if (product.minimumUnits > 1) {
+                    <span class="product-min">mín. {{ product.minimumUnits }} uds</span>
+                  }
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- ========================================================
+         PACKS PARA EVENTOS
+         ======================================================== -->
+    @if (packs().length > 0) {
+      <section class="packs-section">
+        <div class="section-header section-header--light">
+          <span class="section-label">Para grupos y eventos</span>
+          <h2 class="section-title">Packs</h2>
+        </div>
+
+        <div class="packs-grid">
+          @for (pack of packs(); track pack.id) {
+            <article class="pack-card">
+              <div class="pack-top">
+                <h3 class="pack-name">{{ pack.name }}</h3>
+                <span class="pack-price">{{ formatPackPrice(pack) }}</span>
+              </div>
+              <p class="pack-desc">{{ pack.description }}</p>
+              <ul class="pack-list">
+                @for (c of pack.components; track $index) {
+                  <li>
+                    <span class="pack-qty">{{ c.quantity }}×</span>
+                    {{ c.description }}
+                  </li>
+                }
+              </ul>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
+  </main>
+
+}
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <p class="footer-logo">De Casa</p>
+  <p class="footer-info">Bruselas · <a href="mailto:hola@decasa.be">hola&#64;decasa.be</a></p>
+  <p class="footer-copy">© {{ currentYear }} De Casa · Todos los derechos reservados</p>
+</footer>
